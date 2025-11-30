@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: Duplicate Detection API
+  version: "1.0"
+paths:
+  /deduplication:
+    get:
+      operationId: duplicateCheck
+      summary: Detects if a supplier is already present in the supplier master table using fuzzy matching.
+      description: |
+        This endpoint takes a supplier_name and checks Aurora RDS for potential duplicates using fuzzy similarity scoring.
+      parameters:
+        - in: query
+          name: supplier_name
+          required: true
+          schema:
+            type: string
+          description: Name of the supplier to check for duplicates.
+      responses:
+        "200":
+          description: Duplicate check result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  input_supplier:
+                    type: string
+                  is_duplicate:
+                    type: boolean
+                  matched_supplier:
+                    type: string
+                    nullable: true
+                  matched_supplier_id:
+                    type: string
+                    nullable: true
+                  similarity_score:
+                    type: integer
+                  message:
+                    type: string
+                  mode:
+                    type: string
+                    example: aurora
+        "400":
+          description: Invalid input (missing supplier_name).
+        "500":
+          description: Internal server error.
+x-amazon-bedrock-integration:
+  type: "awsLambda"
+  uri: "arn:aws:lambda:us-east-1:795004313870:function:Supplier360-Deduplication"
