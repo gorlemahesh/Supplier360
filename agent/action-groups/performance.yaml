@@ -1,0 +1,58 @@
+openapi: 3.0.1
+info:
+  title: Business Performance API
+  version: "1.0"
+
+paths:
+  /performance:
+    get:
+      operationId: performanceCheck
+      summary: Retrieves business performance metrics for a supplier.
+      description: >
+        Looks up supplier_id using supplier_name, then retrieves performance
+        history including delivery score, quality score, invoice score, and
+        weighted performance score.
+      parameters:
+        - in: query
+          name: supplier_name
+          required: true
+          schema:
+            type: string
+          description: Name of the supplier whose performance metrics are requested.
+      responses:
+        "200":
+          description: Performance result successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  supplier_id:
+                    type: string
+                  supplier_name:
+                    type: string
+                  delivery_score:
+                    type: number
+                  quality_score:
+                    type: number
+                  invoice_score:
+                    type: number
+                  performance_score:
+                    type: number
+                  notes:
+                    type: array
+                    items:
+                      type: string
+                  mode:
+                    type: string
+                    example: performance_scoring
+        "400":
+          description: Invalid request (missing supplier_name).
+        "404":
+          description: Supplier not found.
+        "500":
+          description: Internal service error.
+
+x-amazon-bedrock-integration:
+  type: awsLambda
+  uri: arn:aws:lambda:us-east-1:795004313870:function:Supplier360-Performance
