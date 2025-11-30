@@ -1,0 +1,31 @@
+openapi: 3.0.1
+info:
+  title: Supplier360 Compliance API
+  version: 1.0.0
+paths:
+  /compliance:
+    description: "Returns compliance status and score for a supplier using Aurora RDS data."
+    get:
+      operationId: getCompliance
+      summary: Get compliance status and score for a supplier
+      description: Get the compliance breakdown and score for a supplier using supplier_id or supplier_name.
+      parameters:
+        - in: query
+          name: supplier_id
+          schema:
+            type: string
+          required: false
+          description: Supplier unique ID in supplier_master.
+        - in: query
+          name: supplier_name
+          schema:
+            type: string
+          required: false
+          description: Supplier name in supplier_master.
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Missing supplier_id or supplier_name.
+        "404":
+          description: Supplier not found.
