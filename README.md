@@ -158,25 +158,21 @@ Before running or deploying Supplier360, ensure the following setup and tools ar
   - Username & Password  
   - Database name (recommended: `supplier360`)  
 
-- Apply database schema:
+- Apply database schema and Load synthetic dataset:
   ```bash
   psql -h <RDS_ENDPOINT> -U <USER> -d <DB_NAME> -f db/schema/schema.sql
-  ```
-- Load synthetic demo dataset:
- ```bash
   psql -h <RDS_ENDPOINT> -U <USER> -d <DB_NAME> -f db/data/data.sql
- ```
-
+  ```
+  
 ### 🐍 Local Machine Requirements:
-
  -  Python 3.9 or higher
  - Package manager:
  - pip or
  - conda or
  - virtualenv
-
-- Ability to run Streamlit:
+ - Ability to run Streamlit:
  ```bash
       streamlit run app.py
  ```
+
 
