@@ -94,4 +94,6 @@ It uses **Amazon Bedrock Agents** with custom **Lambda-based action groups** and
         ├── README.md
         ├── app.py           # Streamlit UI (chat with Bedrock Agent)
         └── requirements.txt # Python dependencies for the UI
+```
+
 
