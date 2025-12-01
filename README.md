@@ -95,5 +95,45 @@ It uses **Amazon Bedrock Agents** with custom **Lambda-based action groups** and
         ├── app.py           # Streamlit UI (chat with Bedrock Agent)
         └── requirements.txt # Python dependencies for the UI
 ```
+---
+## 4. Tech Stack
 
+### 🧠 AI & Agent Framework
+- **Amazon Bedrock Agents**
+- **Bedrock Agent Runtime (InvokeAgent)**
+- **YAML Action Groups** mapped to Lambda functions
+- **System Prompt** defining agent rules and reasoning
+
+### 🖥️ Backend (Serverless)
+- **AWS Lambda (Python 3.x)** for compliance, deduplication, and performance logic
+- **Amazon Aurora PostgreSQL (RDS)** for supplier master data and scoring data
+- **VPC + Private Subnets** for secure database connectivity
+- **IAM Roles & Policies** enabling:
+  - Lambda → RDS connectivity  
+  - Bedrock Agent → Lambda invocation  
+  - CloudWatch logging  
+
+### 🗄️ Database Layer
+- **Aurora PostgreSQL**
+- Includes:
+  - `db/schema/schema.sql` — table definitions and indexes  
+  - `db/data/data.sql` — synthetic sample dataset for demo  
+
+### 📦 Python Shared Utilities (Backend)
+Located under `backend/common/`:
+- `rds_client.py` — PostgreSQL database connector  
+- `bedrock_utils.py` — common utilities for formatting or Bedrock operations  
+
+### 🖼️ Frontend (Local Demo)
+- **Streamlit** UI (`frontend/streamlit_app/app.py`)
+- Integrates with Bedrock Agent Runtime via `boto3`
+- Chat-based interface for interacting with the Supplier360 agent
+
+### 📦 Frontend Dependencies
+---
+- streamlit
+- boto3
+- botocore
+- python-dotenv
+---
 
