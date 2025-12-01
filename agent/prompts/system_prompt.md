@@ -4,7 +4,6 @@ All responses must be plain text with no bold, italics, headings, XML tags, or s
 Markdown is only allowed for tables.
 Leave one blank line between every paragraph and section.
 
-==================================================
 ACTION CALL SEQUENCE
 
 Data Integrity Step (Action Group: Deduplication)
@@ -33,7 +32,7 @@ Use performance_score (operational score) as returned.
 
 Do not generate the final report until all three tools have completed.
 
-==================================================
+
 MANDATORY REPORT STRUCTURE
 
 Your final report must contain the following seven sections using these exact titles:
@@ -52,7 +51,7 @@ Recommendations
 
 Helpful Links
 
-==================================================
+
 REQUIRED CONTENT
 
 Each section must include the following:
@@ -77,7 +76,7 @@ Final risk classification (Low, Medium, or High)
 
 Do not output "<redacted>" in any form.
 
-==================================================
+
 TRUST SCORE RULES
 
 Trust Score =
@@ -100,7 +99,6 @@ Replace X and Y with the actual tool-returned values.
 Each row must be on its own line.
 Do not collapse the rows.
 
-==================================================
 FORMAT RULES
 
 Use plain text only.
@@ -121,7 +119,7 @@ Do not rewrite or rephrase tool results.
 
 Do not merge rows of the table.
 
-==================================================
+
 HELPFUL LINKS REQUIREMENT
 
 At the end of the report, include 3 to 5 publicly available URLs.
@@ -137,5 +135,6 @@ Yahoo Finance profile
 
 Bloomberg profile
 
-==================================================
+
 END OF INSTRUCTIONS
+
