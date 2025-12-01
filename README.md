@@ -95,5 +95,160 @@ It uses **Amazon Bedrock Agents** with custom **Lambda-based action groups** and
         ├── app.py           # Streamlit UI (chat with Bedrock Agent)
         └── requirements.txt # Python dependencies for the UI
 
+4. Tech Stack
+
+Cloud & Backend
+
+Amazon Bedrock (Agents + model invocation)
+
+AWS Lambda (Python)
+
+Amazon Aurora PostgreSQL (RDS)
+
+IAM (permissions for Bedrock & Lambda to talk to RDS)
+
+Frontend
+
+Streamlit (local demo UI)
+
+Python Packages (frontend)
+
+streamlit
+
+boto3
+
+botocore
+
+python-dotenv
+
+requests
+
+
+5. Prerequisites
+
+AWS Account with:
+
+Bedrock access (agent + runtime)
+
+Lambda
+
+RDS (Aurora PostgreSQL)
+
+Python 3.9+ (local)
+
+pip / conda for package management
+
+6. Setup & Installation
+6.1. Clone the repository
+git clone https://github.com/<your-org>/Supplier360.git
+cd Supplier360
+
+6.2. Database (Aurora PostgreSQL)
+
+Create an Aurora PostgreSQL cluster in AWS.
+
+Note the:
+
+Host / endpoint
+
+Port
+
+Database name
+
+Username / password
+
+Apply the schema:
+
+psql -h <RDS_ENDPOINT> -p <PORT> -U <USER> -d <DB_NAME> -f db/schema/schema.sql
+
+
+Load the sample data:
+
+psql -h <RDS_ENDPOINT> -p <PORT> -U <USER> -d <DB_NAME> -f db/data/data.sql
+
+
+The sample data is synthetic, designed to look like realistic supplier data for an academic/demo project.
+
+6.3. Backend – Lambda Functions
+
+For each Lambda under backend/lambdas:
+
+compliance/lambda_function.py
+
+deduplication/lambda_function.py
+
+performance/lambda_function.py
+
+You can deploy them using the AWS Console or your preferred IaC (CloudFormation / CDK / Terraform).
+
+Typical configuration:
+
+Runtime: Python 3.x
+
+Environment variables (example – adjust to your code):
+
+DB_HOST – Aurora endpoint
+
+DB_PORT – Aurora port
+
+DB_NAME – Database name
+
+DB_USER – DB user
+
+DB_PASSWORD – DB password
+
+Permissions:
+
+Lambda must be able to:
+
+Connect to RDS (VPC + Security Group)
+
+Be invoked by Bedrock Agent Action Groups
+
+6.4. Bedrock Agent & Action Groups
+
+In the Bedrock console, create a new Agent (e.g., Supplier360Agent).
+
+Configure:
+
+System prompt → from agent/prompts/system_prompt.md
+
+Add Action Groups:
+
+compliance → attach agent/action-groups/compliance.yaml
+
+deduplication → attach agent/action-groups/deduplication.yaml
+
+performance → attach agent/action-groups/performance.yaml
+
+For each action group, map the Lambda you deployed.
+
+Create an Agent Alias (e.g., demo) and note:
+
+Agent ID
+
+Agent Alias ID
+
+You will use these values in the Streamlit app.
+
+6.5. Frontend – Streamlit UI (local)
+cd frontend/streamlit_app
+python -m venv .venv
+source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+
+Create a .env file in frontend/streamlit_app:
+
+AWS_REGION=us-east-1
+BEDROCK_AGENT_ID=<your-agent-id>
+BEDROCK_AGENT_ALIAS_ID=<your-agent-alias-id>
+
+
+(If your app needs AWS credentials locally, configure them via aws configure or environment variables.)
+
+Run the app:
+
+streamlit run app.py
 
 
