@@ -137,3 +137,45 @@ Located under `backend/common/`:
 - python-dotenv
 ---
 
+## 5. Prerequisites
+
+Before running or deploying Supplier360, ensure the following setup and tools are available.
+
+### 🔐 AWS Requirements
+- Active **AWS Account**
+- **Amazon Bedrock** access enabled (Agents + Runtime)
+- **AWS Lambda** service available
+- **Amazon Aurora PostgreSQL** cluster created
+- IAM permissions allowing:
+  - Bedrock Agent → invoke Lambda  
+  - Lambda → connect to Aurora RDS  
+  - Lambda → write logs to CloudWatch  
+
+### 🗄️ Database Requirements
+- Aurora PostgreSQL instance with:
+  - Host / Endpoint  
+  - Port (default: 5432)  
+  - Username & Password  
+  - Database name (recommended: `supplier360`)  
+
+- Apply database schema:
+  ```bash
+  psql -h <RDS_ENDPOINT> -U <USER> -d <DB_NAME> -f db/schema/schema.sql
+  ```
+  -Load synthetic demo dataset:
+ ```bash
+   psql -h <RDS_ENDPOINT> -U <USER> -d <DB_NAME> -f db/data/data.sql
+ ```
+
+- 🐍 Local Machine Requirements:
+
+ -  Python 3.9 or higher
+ - Package manager:
+ - pip or
+ - conda or
+ - virtualenv
+
+-Ability to run Streamlit:
+ ```bash
+      streamlit run app.py
+```
