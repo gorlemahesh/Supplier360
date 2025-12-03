@@ -1,4 +1,4 @@
-# Supplier360 – AI-Powered Supplier Risk & Compliance Assistant
+# Supplier360 – AI + AWS Bedrock Supplier Trust Scoring System
 
 Supplier360 is an end-to-end **AI + AWS Bedrock–powered Supplier 360° view** that helps procurement and risk teams:
 
@@ -6,27 +6,36 @@ Supplier360 is an end-to-end **AI + AWS Bedrock–powered Supplier 360° view** 
 - Detect **duplicate / overlapping suppliers**  
 - Monitor **performance & risk signals** over time  
 
-It uses **Amazon Bedrock Agents** with custom **Lambda-based action groups** and an **Aurora PostgreSQL** database, with a simple **Streamlit UI** for local demos.
+The core intention of this project is to generate a unified Supplier Trust Score by combining data integrity, certification health, and operational performance. The system uses Amazon Bedrock Agents with Lambda-based action groups and an Aurora PostgreSQL backend, supported by a lightweight Streamlit UI for local demos.
 
 ---
 
 ## 1. Key Features
 
-- 🤖 **Bedrock Agent–driven workflow**  
-  Natural language questions like _“Give me the compliance health score for Supplier X”_ or  
-  _“Show high-risk suppliers by region”_.
+- 🤖 **Bedrock Agent–orchestrated workflow**  
+  Interact using natural language prompts such as “Generate a supplier risk profile” or  
+  “What is the compliance score for Supplier X?”. The Agent coordinates all Lambda action groups  
+  to produce a unified analysis.
 
 - 📊 **Compliance scoring engine**  
-  Lambda functions query Aurora and compute **compliance health scores** based on rules and weights.
+  Lambda functions query Aurora PostgreSQL to evaluate certification validity, identify missing or  
+  expired documents, and generate a structured Certification Score.
 
-- 🧹 **Supplier deduplication**  
-  Identify suppliers that may be duplicates (similar names, tax IDs, locations, etc).
+- 🧹 **Supplier deduplication & data integrity check**  
+  Fuzzy matching helps detect duplicate or overlapping supplier records, ensuring accurate supplier  
+  identity before any scoring is performed.
 
-- 📈 **Performance insights**  
-  Aggregate metrics (on-time delivery, quality issues, etc.) exposed through the Agent.
+- 📈 **Operational performance insights**  
+  Aggregates delivery accuracy, quality compliance, invoice accuracy, and incident history to  
+  compute the Operational Score.
 
-- 🖥️ **Local Streamlit UI**  
-  Simple chat-style UI to talk to the Bedrock Agent and view responses, perfect for demos.
+- 🧮 **Unified Supplier Trust Score**  
+  Data integrity, certification health, and operational performance are combined using a weighted  
+  scoring model to produce a final Supplier Trust Score.
+
+- 🖥️ **Lightweight Streamlit demo UI**  
+  A simple chat-style interface for interacting with the Bedrock Agent and exploring supplier  
+  insights locally.
 
 ---
 
@@ -174,4 +183,5 @@ Before running or deploying Supplier360, ensure the following setup and tools ar
  ```bash
       streamlit run app.py
  ```
+
 
