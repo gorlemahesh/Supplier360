@@ -14,7 +14,7 @@ The core intention of this project is to generate a unified Supplier Trust Score
 
 - 🤖 **Bedrock Agent–orchestrated workflow**  
   Interact using natural language prompts such as “Generate a supplier risk profile” or  
-  “What is the compliance score for Supplier X?”. The Agent coordinates all Lambda action groups  
+  “What is the trust score for Supplier X?”. The Agent coordinates all Lambda action groups  
   to produce a unified analysis.
 
 - 📊 **Compliance scoring engine**  
@@ -217,5 +217,6 @@ streamlit run app.py
 ```
 Your local demo will be available at: http://localhost:8501  
 🎉 Supplier360 is now ready!
+
 
 
