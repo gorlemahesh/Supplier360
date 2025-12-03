@@ -179,9 +179,43 @@ Before running or deploying Supplier360, ensure the following setup and tools ar
  - pip or
  - conda or
  - virtualenv
- - Ability to run Streamlit:
- ```bash
-      streamlit run app.py
- ```
+   
+## 6. 🚀 Quickstart – Run Supplier360 Locally  
+
+### 1️⃣ Clone the repository  
+```bash
+git clone https://github.com/gorlemahesh/Supplier360.git  
+cd Supplier360  
+```
+### 2️⃣ Create and activate a virtual environment  
+
+Using Python venv: 
+```bash
+python3 -m venv venv  
+source venv/bin/activate      # macOS / Linux  
+venv\Scripts\activate         # Windows PowerShell 
+```
+Or using Conda:  
+```bash
+conda create -n supplier360 python=3.10 -y  
+conda activate supplier360  
+```
+### 3️⃣ Install frontend dependencies (Streamlit UI)  
+```bash
+cd frontend/streamlit_app  
+pip install -r requirements.txt
+```
+### 4️⃣ Configure environment variables  
+```
+cp .env.example .env  
+```
+Fill in: AWS_REGION, BEDROCK_AGENT_ID, BEDROCK_AGENT_ALIAS_ID, DB_HOST, DB_USER, DB_PASSWORD, etc.  
+These will be automatically loaded by the Streamlit app and backend utilities.  
+### 5️⃣ Run the Streamlit App  
+```
+streamlit run app.py  
+```
+Your local demo will be available at: http://localhost:8501  
+🎉 Supplier360 is now ready!
 
 
